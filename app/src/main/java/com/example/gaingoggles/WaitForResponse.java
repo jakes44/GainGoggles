@@ -20,6 +20,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import java.util.UUID;
+
 public class WaitForResponse extends AppCompatActivity {
 
     @Override
@@ -29,7 +31,7 @@ public class WaitForResponse extends AppCompatActivity {
         Uri uri = Uri.parse(getIntent().getStringExtra(MainActivity.EXTRA_URI));
         try {
             InputStream is = getContentResolver().openInputStream(uri);
-            File f = new File(getCacheDir().getPath() + "vid.mp4");
+            File f = new File(getCacheDir().getPath() + UUID.randomUUID().toString() + ".mp4");
             copyInputStreamToFile(is,f);
             sendVideo(f);
         }catch (Exception e){
