@@ -4,5 +4,8 @@
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
     <string name="record_button">Record Workout</string>
-    <string name="display_video">Video Playback</string>
+    <string name="analyzing_form">Analyzing Form</string>
+    <string name="display_video">Your Form</string>
+    <string name="form_info">Color change indicates proper squat depth</string>
+    <string name="title_activity_wait_for_response">WaitForResponse</string>
 </resources>

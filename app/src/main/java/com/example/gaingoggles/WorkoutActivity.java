@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.VideoView;
 
+import java.io.File;
+
 public class WorkoutActivity extends AppCompatActivity {
 
     @Override
@@ -15,8 +17,8 @@ public class WorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_video);
         final VideoView view = findViewById(R.id.videoView);
         Intent intent = getIntent();
-        Uri uri = Uri.parse(intent.getStringExtra(MainActivity.EXTRA_URI));
-        view.setVideoURI(uri);
+//        Uri uri = Uri.parse(intent.getStringExtra(MainActivity.EXTRA_FILE));
+        view.setVideoPath(intent.getStringExtra(MainActivity.EXTRA_FILE));
         view.start();
         view.setOnCompletionListener ( new MediaPlayer.OnCompletionListener() {
 

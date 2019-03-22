@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_VIDEO_CAPTURE = 1;
     public static final String EXTRA_URI = "com.app.workout";
+    public static final String EXTRA_FILE = "com.app.workout.file";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
         Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
         takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 10);
-        takeVideoIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
         if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
         }
@@ -38,13 +38,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri videoUri = intent.getData();
-            Intent view = new Intent(this, WorkoutActivity.class);
-            view.putExtra(EXTRA_URI, videoUri.toString());
-            startActivity(view);
+
+            Intent waitForVid = new Intent(this, WaitForResponse.class);
+            waitForVid.putExtra(EXTRA_URI, videoUri.toString());
+            startActivity(waitForVid);
+//            Intent view = new Intent(this, WorkoutActivity.class);
+//            view.putExtra(EXTRA_URI, videoUri.toString());
+//            startActivity(view);
         }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
